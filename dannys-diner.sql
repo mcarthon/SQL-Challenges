@@ -284,6 +284,25 @@ ORDER BY
 	id;
 
 -- 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
+SELECT
+	sales.customer_id AS id,
+    menu.product_name AS name,
+    CASE 
+    	WHEN 
+        	menu.product_name NOT LIKE 'sushi'
+        THEN
+        	1
+        ELSE
+        	0
+    END 
+FROM
+	dannys_diner.sales AS sales
+    INNER JOIN
+    dannys_diner.menu AS menu
+    ON
+    sales.product_id = menu.product_id;
+
 -- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 
 -- Example Query:
